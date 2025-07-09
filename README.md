@@ -8,13 +8,13 @@ Log Dawg is an intelligent log analysis tool that uses Large Language Models (LL
 
 ## Table of Contents
 
+- [Features](#features)
 - [Architecture](#architecture)
 - [Monorepo Development Setup](#monorepo-development-setup)
   - [Prerequisites](#prerequisites)
   - [Quick Start Commands](#quick-start-commands)
   - [Services](#services)
 - [Project Structure](#project-structure)
-- [Features](#features)
 - [Configuration](#configuration)
   - [Backend Environment Variables](#backend-environment-variables-backendconfigenvexample)
   - [Frontend Environment Variables](#frontend-environment-variables-frontendenvexample)
@@ -36,57 +36,25 @@ Log Dawg is an intelligent log analysis tool that uses Large Language Models (LL
 
 ---
 
+## Features
+
+- 🤖 **LLM-Powered Analysis**: Leverages LLMs (OpenAI, Anthropic, Langfuse) for in-depth root cause analysis.
+- 🔄 **Git Integration**: Enriches diagnoses with context from recent commits and code changes.
+- 🧠 **Context Discovery Engine**: Intelligently finds and includes relevant source code in the analysis.
+- 📊 **Flexible Log Parsing**: Supports JSON, plain text, and common AWS log formats.
+- **Markdown Reports**: Generates detailed and readable diagnosis reports.
+- 🐳 **Docker Ready**: Simplified setup and deployment with Docker Compose.
+- 🚀 **Async Processing**: Utilizes a background worker queue to handle concurrent diagnosis requests without blocking.
+- 🧩 **Advanced Logging**: Provides per-diagnosis logs for complete traceability.
+
+---
+
 ## Architecture
 
 This is a monorepo containing:
 - **Backend**: Python FastAPI service for log analysis and diagnosis
 - **Frontend**: React TypeScript dashboard for viewing reports and system monitoring
 - **Independent Configuration**: Separate environment configurations for each service
-
----
-
-## Monorepo Development Setup
-
-### Prerequisites
-- Node.js 18+ (for frontend)
-- Python 3.9+ (for backend)
-- Git
-
-### Quick Start Commands
-
-```bash
-# Clone repository
-git clone https://github.com/MankowskiNick/log-dawg
-cd log-dawg
-
-# Backend setup
-cd backend
-pip install -r requirements.txt
-cp config/.env.example .env  # Edit with your API keys
-cd ..
-
-# Frontend setup
-cd frontend
-npm install
-cp .env.example .env  # Configure frontend environment
-cd ..
-
-# Run both services (from root)
-# Backend (Terminal 1)
-cd backend && python -m uvicorn src.main:app --reload --host 0.0.0.0 --port 8000
-
-# Frontend (Terminal 2)
-cd frontend && npm run dev
-```
-
-### Services
-- **Frontend**: http://localhost:5173 (React TypeScript dashboard)
-- **Backend API**: http://localhost:8000 (FastAPI service)
-- **API Docs**: http://localhost:8000/docs
-
----
-
-## Project Structure
 
 ```
 log-dawg/
@@ -105,19 +73,43 @@ log-dawg/
 │   ├── .env          # Frontend environment variables
 │   └── vite.config.ts
 ```
+---
+
+## Monorepo Development Setup
+
+### Prerequisites
+- Node.js 18+ (for frontend)
+- Python 3.9+ (for backend)
+- Git
+
+### Quick Start Commands
+
+```bash
+# Clone repository
+git clone https://github.com/MankowskiNick/log-dawg
+cd log-dawg
+
+# Install dependencies (for both frontend and backend)
+npm install
+
+# Copy and configure environment variables
+cp backend/config/.env.example backend/config/.env   # Edit with your API keys
+cp frontend/.env.example frontend/.env               # Edit as needed
+
+# Launch both frontend and backend (from root)
+npm run dev
+```
+
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:8000
+
+### Services
+- **Frontend**: http://localhost:5173 (React TypeScript dashboard)
+- **Backend API**: http://localhost:8000 (FastAPI service)
+- **API Docs**: http://localhost:8000/docs
 
 ---
 
-## Features
-
-- 🤖 **LLM-Powered Analysis**: Leverages LLMs (OpenAI, Anthropic, Langfuse) for in-depth root cause analysis.
-- 🔄 **Git Integration**: Enriches diagnoses with context from recent commits and code changes.
-- 🧠 **Context Discovery Engine**: Intelligently finds and includes relevant source code in the analysis.
-- 📊 **Flexible Log Parsing**: Supports JSON, plain text, and common AWS log formats.
-- **Markdown Reports**: Generates detailed and readable diagnosis reports.
-- 🐳 **Docker Ready**: Simplified setup and deployment with Docker Compose.
-- 🚀 **Async Processing**: Utilizes a background worker queue to handle concurrent diagnosis requests without blocking.
-- 🧩 **Advanced Logging**: Provides per-diagnosis logs for complete traceability.
 
 ---
 
@@ -126,9 +118,12 @@ log-dawg/
 ### Backend Environment Variables (`backend/config/.env.example`)
 
 ```bash
-# LLM API Configuration
+# LLM API Configuration -- Only required for the selected provider
 OPENAI_API_KEY=your_openai_api_key_here
-ANTHROPIC_API_KEY=your_anthropic_api_key_here
+# ANTHROPIC_API_KEY=your_anthropic_api_key_here
+# LANGFUSE_PUBLIC_KEY=your_langfuse_public_key
+# LANGFUSE_SECRET_KEY=your_langfuse_secret_key
+# LANGFUSE_HOST=https://cloud.langfuse.com
 
 # Git Authentication (if using HTTPS with token)
 GIT_TOKEN=your_git_token_here
@@ -137,11 +132,6 @@ GIT_USERNAME=your_git_username_here
 # Server Configuration
 LOG_LEVEL=INFO
 DEBUG=False
-
-# Optional: Custom LLM Provider Configuration
-LANGFUSE_PUBLIC_KEY=your_langfuse_public_key
-LANGFUSE_SECRET_KEY=your_langfuse_secret_key
-LANGFUSE_HOST=https://cloud.langfuse.com
 ```
 
 ### Frontend Environment Variables (`frontend/.env.example`)
