@@ -6,6 +6,36 @@ Log Dawg is an intelligent log analysis tool that uses Large Language Models (LL
 
 ---
 
+## Table of Contents
+
+- [Architecture](#architecture)
+- [Monorepo Development Setup](#monorepo-development-setup)
+  - [Prerequisites](#prerequisites)
+  - [Quick Start Commands](#quick-start-commands)
+  - [Services](#services)
+- [Project Structure](#project-structure)
+- [Features](#features)
+- [Configuration](#configuration)
+  - [Backend Environment Variables](#backend-environment-variables-backendconfigenvexample)
+  - [Frontend Environment Variables](#frontend-environment-variables-frontendenvexample)
+  - [Configuration File](#configuration-file-backendconfigconfigyaml)
+- [Usage](#usage)
+  - [Diagnose Error Logs](#diagnose-error-logs)
+- [API Endpoints](#api-endpoints)
+- [Generated Reports](#generated-reports)
+- [Supported Log Formats](#supported-log-formats)
+- [Development](#development)
+  - [Adding New LLM Providers](#adding-new-llm-providers)
+- [Alternative: Run Without Docker (Advanced)](#alternative-run-without-docker-advanced)
+- [Troubleshooting](#troubleshooting)
+  - [Common Issues](#common-issues)
+  - [Logging](#logging)
+- [Contributing](#contributing)
+- [License](#license)
+- [Support](#support)
+
+---
+
 ## Architecture
 
 This is a monorepo containing:
