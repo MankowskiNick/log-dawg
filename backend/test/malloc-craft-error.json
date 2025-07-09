@@ -1,0 +1,66 @@
+{
+  "log_data": {
+    "content": {
+      "timestamp": "2025-06-30T01:24:27.123Z",
+      "level": "ERROR",
+      "message": "Shader compilation failed during renderer initialization",
+      "source": "malloc-craft",
+      "service": "render-engine",
+      "instance_id": "i-0a1b2c3d4e5f67890",
+      "region": "us-east-1",
+      "availability_zone": "us-east-1a",
+      "log_group": "/aws/ec2/malloc-craft",
+      "log_stream": "i-0a1b2c3d4e5f67890/render.log",
+      "aws_request_id": "c1e2f3a4-b5d6-7890-1234-56789abcdef0",
+      "full_log": "Initializing renderer...\nLoading shader: res/shaders/world.vert\nERROR: Failed to open shader file: res/shaders/world.vert\nERROR: Shader compilation failed: 0:1(1): error: syntax error, unexpected END_OF_FILE\nFATAL: Renderer initialization aborted",
+      "error_details": {
+        "error_type": "ShaderCompilationError",
+        "error_message": "Failed to compile vertex shader due to missing or invalid file",
+        "severity": "FATAL",
+        "exit_code": 2,
+        "failed_operation": "compile_shader_from_file",
+        "shader_path": "res/shaders/world.vert"
+      },
+      "environment": {
+        "compiler": "gcc 13.2.0",
+        "application_version": "0.1.0",
+        "deployment_id": "deploy-20250630-012400",
+        "memory_usage_mb": 512,
+        "cpu_usage_percent": 38.5
+      },
+      "stack_trace": "at compile_shader_from_file (src/shader.c:45)\nat create_shader (src/shader.c:102)\nat create_renderer (src/render.c:38)\nat main (src/main.c:12)",
+      "tags": [
+        "production",
+        "rendering",
+        "shader-error",
+        "cross-file"
+      ]
+    },
+    "source": "cloudwatch",
+    "timestamp": "2025-06-30T01:24:27.123Z",
+    "metadata": {
+      "instance_id": "i-0a1b2c3d4e5f67890",
+      "instance_type": "t3.medium",
+      "region": "us-east-1",
+      "availability_zone": "us-east-1a",
+      "vpc_id": "vpc-12345678",
+      "subnet_id": "subnet-abcdef01",
+      "security_groups": ["sg-security123", "sg-render456"],
+      "ami_id": "ami-0c02fb55956c7d316",
+      "platform": "linux",
+      "architecture": "x86_64",
+      "launch_time": "2025-06-30T01:00:00.000Z",
+      "monitoring": {
+        "cloudwatch_agent_version": "1.247359.0",
+        "detailed_monitoring": true
+      },
+      "iam_role": "EC2-MallocCraft-Role",
+      "user_data_executed": true,
+      "application_load_balancer": {
+        "target_group": "malloc-craft-targets",
+        "health_check_status": "unhealthy",
+        "last_health_check": "2025-06-30T01:24:00.000Z"
+      }
+    }
+  }
+}

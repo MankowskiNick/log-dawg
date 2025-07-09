@@ -1,0 +1,65 @@
+# Repository Configuration
+repository:
+  url: "https://github.com/MankowskiNick/malloc-craft.git"
+  branch: "main"
+  local_path: "./repo"
+  auth_method: "token"  # Options: ssh, https, token
+ 
+# LLM Configuration
+llm:
+  provider: "anthropic"  # Options: openai, anthropic, langfuse
+  model: "claude-sonnet-4-20250514"
+  max_tokens: 2000
+  temperature: 0.1
+  timeout: 150
+  retry_count: 5              # Number of retry attempts for rate limit errors
+  retry_backoff_base: 2       # Base seconds for exponential backoff
+  retry_backoff_max: 30       # Maximum backoff seconds between retries
+ 
+# Report Configuration
+reports:
+  output_dir: "./reports"
+  max_reports: 100
+  filename_format: "diagnosis_{timestamp}_{hash}.md"
+ 
+# Server Configuration
+server:
+  host: "0.0.0.0"
+  port: 8000
+  reload: false
+  http_workers: 1
+  diagnosis_worker_count: 4
+ 
+ 
+# Git Analysis Configuration
+git_analysis:
+  max_commits_to_analyze: 5
+  file_extensions_to_include: [".py", ".js", ".ts", ".java", ".go", ".rs", ".cpp", ".c"]
+ 
+# Context Discovery Configuration
+context_discovery:
+  enabled: true
+  max_iterations: 5
+  confidence_threshold: 0.95
+  file_size_limit_kb: 100
+  max_total_context_size_kb: 500
+  file_extensions_priority: [".py", ".js", ".ts", ".java", ".go", ".rs", ".cpp", ".c"]
+  exclude_patterns: ["*.log", "*.tmp", "node_modules/*", "__pycache__/*", ".git/*"]
+  min_confidence_improvement: 0.1
+ 
+# Logging Configuration
+logging:
+  level: "DEBUG"
+  per_diagnosis_logging: true
+  log_directory: "./logs"
+  retention_days: 30
+  max_log_size_mb: 100
+  structured_format: true
+  console_logging: true
+  file_logging: true
+  llm_interaction_logging:
+    log_requests: true
+    log_responses: true
+    truncate_large_responses: false
+    max_prompt_log_length: 50000
+    max_response_log_length: 50000
