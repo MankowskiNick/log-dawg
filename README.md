@@ -281,6 +281,28 @@ Log Dawg generates comprehensive markdown root cause analysis reports for each e
 
 ---
 
+## Running with Docker Compose
+
+You can run both the backend and frontend using Docker Compose.
+
+```bash
+# Build and start all services
+docker-compose up --build
+```
+
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:8000
+
+To stop the services:
+
+```bash
+docker-compose down
+```
+
+> Docker is the recommended and supported way to run Log Dawg.
+
+---
+
 ## Alternative: Run Without Docker (Advanced)
 
 Direct Python execution is supported for advanced users and development only.
@@ -295,10 +317,6 @@ python -m src.main
 # Or with uvicorn
 uvicorn src.main:app --host 0.0.0.0 --port 8000
 ```
-
-> Docker is the recommended and supported way to run Log Dawg.
-
----
 
 ## Troubleshooting
 
